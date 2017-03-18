@@ -29,10 +29,12 @@
 
 #ifdef _WIN32
 #include <windows.h>
-// for MinGW < 5.3 include locally provided "../windows hidsdi.h" rather
-// than #include <hidsdi.h>:
-// #include "../windows/hidsdi.h"
+
+#if defined (__MINGW64_VERSION_MAJOR) && __MINGW64_VERSION_MAJOR < 5
+#include "../windows/hidsdi.h"
+#else
 #include <hidsdi.h>
+#endif
 #endif
 
 #include "hidapi_parser.h"

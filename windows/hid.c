@@ -21,10 +21,12 @@
 ********************************************************/
 
 #include <windows.h>
-// for MinGW < 5.3 include locally provided "../windows hidsdi.h" rather
-// than #include <hidsdi.h>:
-// #include "./hidsdi.h"
+
+#if defined (__MINGW64_VERSION_MAJOR) && __MINGW64_VERSION_MAJOR < 5
+#include "./hidsdi.h"
+#else
 #include <hidsdi.h>
+#endif
 
 #ifndef _NTDEF_
 typedef LONG NTSTATUS;
